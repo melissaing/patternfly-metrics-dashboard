@@ -8,7 +8,7 @@ const ProfileSettings: React.FunctionComponent = () => {
   return (
     <PageSection hasBodyWrapper={false}>
       <Title headingLevel="h1" size="lg">
-        Profile Settings Page Title
+        Profile Settings
       </Title>
     </PageSection>
   );
