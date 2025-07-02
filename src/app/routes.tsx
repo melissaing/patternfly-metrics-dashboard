@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Dashboard } from '@app/Dashboard/Dashboard';
-import { Support } from '@app/Support/Support';
-import { GeneralSettings } from '@app/Settings/General/GeneralSettings';
-import { ProfileSettings } from '@app/Settings/Profile/ProfileSettings';
+import { Component } from '@app/Component/Component'
+import { Search } from '@app/Search/Search'
+import { Product } from '@app/Product/Product'
+import { Web } from '@app/Web/Web'
 import { NotFound } from '@app/NotFound/NotFound';
 
 export interface IAppRoute {
@@ -28,36 +29,38 @@ const routes: AppRouteConfig[] = [
   {
     element: <Dashboard />,
     exact: true,
-    label: 'Dashboard',
+    label: 'Home',
     path: '/',
-    title: 'PatternFly Seed | Main Dashboard',
+    title: 'PatternFly Metrics | Main Dashboard',
   },
   {
-    element: <Support />,
+    element: <Component />,
     exact: true,
-    label: 'Support',
-    path: '/support',
-    title: 'PatternFly Seed | Support Page',
+    label: 'Component Metrics',
+    path: '/component',
+    title: 'PatternFly Metrics | Component Metrics',
   },
   {
-    label: 'Settings',
-    routes: [
-      {
-        element: <GeneralSettings />,
-        exact: true,
-        label: 'General',
-        path: '/settings/general',
-        title: 'PatternFly Seed | General Settings',
-      },
-      {
-        element: <ProfileSettings />,
-        exact: true,
-        label: 'Profile',
-        path: '/settings/profile',
-        title: 'PatternFly Seed | Profile Settings',
-      },
-    ],
+    element: <Product />,
+    exact: true,
+    label: 'Product Metrics',
+    path: '/product',
+    title: 'PatternFly Metrics | Product Metrics',
   },
+  {
+    element: <Search />,
+    exact: true,
+    label: 'Search Metrics',
+    path: '/search',
+    title: 'PatternFly Metrics | Search Metrics',
+  },
+  {
+    element: <Web />,
+    exact: true,
+    label: 'Web Metrics',
+    path: '/web',
+    title: 'PatternFly Metrics | Web Metrics',
+  }
 ];
 
 const flattenedRoutes: IAppRoute[] = routes.reduce(
