@@ -3,12 +3,12 @@ import { PageSection, Title, FileUpload,
   DropEvent, List, ListItem, Button,
   ToggleGroup, ToggleGroupItem, ToggleGroupItemProps,
   Card, CardTitle, CardBody, CardFooter, Gallery,
-  GalleryItem, Content } from '@patternfly/react-core';
+  GalleryItem, Content, Divider, Flex, FlexItem } from '@patternfly/react-core';
 import '@patternfly/react-core/dist/styles/base.css';
 import Papa from 'papaparse'
 import { useState, Fragment, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRightIcon, ChartLineIcon, CubesIcon, BoxIcon, SearchIcon } from '@patternfly/react-icons';
+import { ArrowRightIcon, ChartLineIcon, CubesIcon, BoxIcon, SearchIcon, UsersIcon } from '@patternfly/react-icons';
 import { Table, Caption, Thead, Tr, Th, Tbody, Td } from '@patternfly/react-table';
 import { rows, columns } from '@patternfly/react-table/dist/esm/demos/sampleData';
 
@@ -33,7 +33,7 @@ const metricsPages = [
   {
     title: 'Component Metrics',
     description:
-      'Track component usage, performance, and interaction patterns across your application.',
+      'View component usage, performance, and interaction patterns across applications.',
     icon: <CubesIcon />,
     path: '/component',
     features: [
@@ -89,7 +89,7 @@ const Dashboard: React.FunctionComponent = () => (
   <>
   <PageSection>
     <Title headingLevel="h1">PatternFly Metrics Dashboard</Title>
-    <p>This is a dashboard for PatternFly and other related metrics, developed by the PatternFly Enablement team. Data is collected from the PatternFly website and the PatternFly GitHub repositories.</p>
+    <p>This is a dashboard for PatternFly and other related metrics, developed by the PatternFly Enablement team. Data is collected from the PatternFly website, the PatternFly GitHub repositories. and other sources.</p>
     <strong>This dashboard is a work in progress and will be updated over time.</strong>
   </PageSection>
   <PageSection>
@@ -137,6 +137,46 @@ const Dashboard: React.FunctionComponent = () => (
           ))}
         </Gallery>
       </PageSection>
+  </PageSection>
+  <PageSection>
+    <Divider />
+    <PageSection hasBodyWrapper>
+      <Card isSelectable className="pf-v6-u-background-color-primary-200">
+        <CardBody>
+          <Flex alignItems={{ default: 'alignItemsCenter' }} spaceItems={{ default: 'spaceItemsLg' }}>
+            <FlexItem>
+              <div className="pf-v6-u-color-primary-600 pf-v6-u-font-size-2xl">
+                <UsersIcon />
+              </div>
+            </FlexItem>
+            <FlexItem flex={{ default: 'flex_1' }}>
+              <Content component="h3" className="pf-v6-u-mb-sm">
+                Alternative View: Search Metrics by Team
+              </Content>
+              <Content component="p" className="pf-v6-u-mb-md">
+                Instead of browsing by metric categories, explore PatternFly adoption and usage data organized by teams across Red Hat. 
+                View team-specific metrics including adoption scores, PatternFly versions, project counts, and current status.
+              </Content>
+              <Content component="p" className="pf-v6-u-mb-0 pf-v6-u-color-text-secondary">
+                Search and filter teams by name, department, or status to find relevant metrics for your organization.
+              </Content>
+            </FlexItem>
+            <FlexItem>
+              <Link to="/teams">
+                <Button
+                  variant="primary"
+                  icon={<ArrowRightIcon />}
+                  iconPosition="end"
+                  size="lg"
+                >
+                  Browse Teams
+                </Button>
+              </Link>
+            </FlexItem>
+          </Flex>
+        </CardBody>
+      </Card>
+    </PageSection>
   </PageSection>
   </>
 )

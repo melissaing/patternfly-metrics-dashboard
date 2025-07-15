@@ -1,7 +1,7 @@
 import * as React from 'react';
 import '@patternfly/react-core/dist/styles/base.css';
 import { PageSection, Title, Alert, List, ListItem, Divider, Card, CardTitle, CardBody, Grid, GridItem, Pagination, TextInput, InputGroup, InputGroupItem } from '@patternfly/react-core';
-import { ChartPie } from '@patternfly/react-charts/victory';
+import { VictoryPie, VictoryTooltip } from 'victory';
 import { Table, Thead, Tr, Th, Tbody, Td, ThProps } from '@patternfly/react-table';
 import { SearchIcon } from '@patternfly/react-icons';
 import { useState } from 'react';
@@ -680,28 +680,23 @@ const ListBasic: React.FunctionComponent = () => (
 
 const BasicWithRightAlignedLegend: React.FunctionComponent = () => (
   <div style={{ height: '230px', width: '350px' }}>
-    <ChartPie
-      ariaDesc="Operating systems of web users"
-      ariaTitle="Operating System"
-      constrainToVisibleArea
+    <VictoryPie
       data={[{ x: 'Windows', y: 5565 }, { x: 'Macintosh', y: 4548 }, { x: 'Linux', y: 751 }, 
         { x: 'Android', y: 618 }, { x: 'iOS', y: 510 }, { x: 'Other', y: 155}
       ]}
       height={230}
-      labels={({ datum }) => `${datum.x}: ${datum.y}`}
-      legendData={[{ name: 'Windows: 5565' }, { name: 'Macintosh: 4548' }, { name: 'Linux: 751' },
-        { name: 'Android: 618' }, { name: 'iOS: 510' }, { name: 'Other: 155'}
-      ]}
-      legendOrientation="vertical"
-      legendPosition="right"
-      name="chart1"
+      width={350}
       padding={{
         bottom: 20,
         left: 20,
         right: 160, // Adjust to fit legend
         top: 20
       }}
-      width={350}
+      labelComponent={<VictoryTooltip />}
+      colorScale={["#0066CC", "#009639", "#EC7A08", "#8476D1", "#C9190B", "#6A6E73"]}
+      style={{
+        labels: { fontSize: 12, fill: "black" }
+      }}
     />
   </div>
 )

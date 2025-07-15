@@ -5,6 +5,7 @@ import { Component } from '@app/Component/Component'
 import { Search } from '@app/Search/Search'
 import { Product } from '@app/Product/Product'
 import { Web } from '@app/Web/Web'
+import { Teams } from '@app/Teams/Teams'
 import { NotFound } from '@app/NotFound/NotFound';
 
 export interface IAppRoute {
@@ -60,6 +61,13 @@ const routes: AppRouteConfig[] = [
     label: 'Web Metrics',
     path: '/web',
     title: 'PatternFly Metrics | Web Metrics',
+  },
+  {
+    element: <Teams />,
+    exact: true,
+    label: 'Find Metrics by Team',
+    path: '/teams',
+    title: 'PatternFly Metrics | Teams',
   }
 ];
 

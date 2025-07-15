@@ -1,6 +1,8 @@
-# Patternfly Seed
+# PatternFly Metrics Dashboard
 
-Patternfly Seed is an open source build scaffolding utility for web apps. The primary purpose of this project is to give developers a jump start when creating new projects that will use patternfly. A secondary purpose of this project is to serve as a reference for how to configure various aspects of an application that uses patternfly, webpack, react, typescript, etc.
+Adapted from the PatternFly seed app.
+
+This project is a work-in-progress. Developed by the PatternFly Enablement team, 
 
 Out of the box you'll get an app layout with chrome (header/sidebar), routing, build pipeline, test suite, and some code quality tools. Basically, all the essentials.
 
@@ -101,3 +103,32 @@ ENV_2=http://2.myendpoint.com
 
 
 With that in place, you can use the values in your code like `console.log(process.env.ENV_1);`
+
+## Live NPM Data Integration
+
+The application now includes live NPM download data for design system comparison charts. The data is automatically fetched from the NPM Registry API and updates every 30 minutes.
+
+### Features
+- **Real-time Data**: Fetches actual download statistics from npmjs.org
+- **Automatic Updates**: Refreshes every 30 minutes 
+- **Manual Refresh**: Click "Refresh Now" button for immediate updates
+- **Fallback Support**: Uses sample data if API is unavailable
+- **Visual Indicators**: Shows data source status with color-coded indicators
+
+### Packages Tracked
+- `@patternfly/react-core` (PatternFly)
+- `@shopify/polaris` (Shopify Polaris) 
+- `@carbon/react` (Carbon Design)
+- `@atlaskit/button` (Atlaskit)
+
+### CORS Considerations
+The app uses the public NPM Registry API (`api.npmjs.org`) which supports CORS. If you encounter CORS issues in your environment:
+
+1. **Development**: Run with CORS disabled or use a proxy
+2. **Production**: Deploy behind a reverse proxy that handles CORS
+3. **Alternative**: The app will gracefully fallback to sample data
+
+### Data Source
+- API: `https://api.npmjs.org/downloads/range`
+- Documentation: [NPM Registry API](https://github.com/npm/registry/blob/master/docs/download-counts.md)
+- Rate Limits: Reasonable usage is acceptable
